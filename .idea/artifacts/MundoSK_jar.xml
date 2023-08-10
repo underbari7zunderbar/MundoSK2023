@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MundoSK:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MundoSK_jar</output-path>
+    <root id="archive" name="MundoSK.jar">
+      <element id="module-output" name="MundoSK" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/eclipse/jdt/org.eclipse.jdt.annotation/2.2.0/org.eclipse.jdt.annotation-2.2.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

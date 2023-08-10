@@ -1,0 +1,20 @@
+name: MundoSK
+authors: [Tlatoani, szumielxd, HAN1110]
+description: Packets, World Borders, World Management, Custom World Generation, Tablist and Skin Modification, Books, Enchanted Books, WebSockets, TerrainControl hook, and more for Skript!
+website: https://github.com/szumielxd/MundoSK/
+version: 1.8.7
+main: com.pie.tlatoani.Mundo
+depend: [Skript]
+soft-depend: [TerrainControl]
+commands:
+  mundosk:
+    description: This command is for getting basic information about MundoSK as well as reloading the config
+    usage: /mundosk <string>
+    permission: mundosk.command
+    permission-message: You don't have the right permissions for that command
+permissions:
+  mundosk.*:
+    description: Permission for things related to MundoSK
+    default: op
+    children:
+      mundosk.command: true
