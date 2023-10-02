@@ -6,6 +6,7 @@ version: ${version}
 main: ${mainClass}
 depend: [Skript]
 soft-depend: [TerrainControl, ProtocolLib]
+api-version: 1.20
 commands:
   mundosk:
     description: This command is for getting basic information about MundoSK as well as reloading the config

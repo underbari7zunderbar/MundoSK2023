@@ -5,7 +5,7 @@ website: https://github.com/szumielxd/MundoSK/
 version: 1.8.7
 main: com.pie.tlatoani.Mundo
 depend: [Skript]
-soft-depend: [TerrainControl]
+soft-depend: [TerrainControl, ProtocolLib]
 commands:
   mundosk:
     description: This command is for getting basic information about MundoSK as well as reloading the config

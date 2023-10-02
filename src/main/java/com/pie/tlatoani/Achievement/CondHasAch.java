@@ -1,6 +1,5 @@
 package com.pie.tlatoani.Achievement;
 
-import org.bukkit.Achievement;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.entity.Player;
 
@@ -46,8 +45,7 @@ public class CondHasAch extends SimpleExpression<Boolean>{
 
 	@Override
 	protected Boolean[] get(Event event) {
-		return new Boolean[]{player.getSingle(event).
-				getAdvancementProgress(ach.getSingle(event)).isDone()};
+		return new Boolean[]{player.getSingle(event).getAdvancementProgress(ach.getSingle(event)).isDone()};
 	}
 
 

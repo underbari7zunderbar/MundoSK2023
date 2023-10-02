@@ -14,7 +14,7 @@ public class AchievementMundo {
         Registration.registerEnum(Achievement.class, "achievement", Achievement.values())
                 .document("Achievement", "1.4.10", "An achievement that a player can get. "
                         + "Note that achievements were removed in Minecraft 1.12 and thus this syntax will not work if you are running Bukkit/Spigot 1.12 and above.");
-         Registration.registerEvent("Achievement Award", EvtAchAward.class, PlayerAchievementAwardedEvent.class, "achieve[ment] [%-achievement%] award", "award of achieve[ment] [%-achievement%]")
+        Registration.registerEvent("Achievement Award", EvtAchAward.class, PlayerAchievementAwardedEvent.class, "achieve[ment] [%-achievement%] award", "award of achieve[ment] [%-achievement%]")
                 .document("Achievement Award", "1.4.10", "Called when a player is awarded either the specified achievement or any achievement. "
                         + "Note that achievements were removed in Minecraft 1.12 and thus this syntax will not work if you are running Bukkit/Spigot 1.12 and above.")
                 .eventValue(Achievement.class, "1.4.10", "The achievement that was awarded.");
