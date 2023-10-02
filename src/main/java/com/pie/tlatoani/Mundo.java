@@ -11,10 +11,13 @@ import com.pie.tlatoani.Generator.GeneratorManager;
 import com.pie.tlatoani.ListUtil.ListUtil;
 import com.pie.tlatoani.Miscellaneous.MiscMundo;
 import com.pie.tlatoani.Probability.ProbabilityMundo;
+import com.pie.tlatoani.ProtocolLib.PacketManager;
 import com.pie.tlatoani.Core.Registration.Documentation;
 import com.pie.tlatoani.Core.Registration.Registration;
+import com.pie.tlatoani.Skin.SkinMundo;
 import com.pie.tlatoani.Socket.SocketMundo;
 import com.pie.tlatoani.Socket.UtilFunctionSocket;
+import com.pie.tlatoani.Tablist.TablistMundo;
 import com.pie.tlatoani.TerrainControl.TerrainControlMundo;
 import com.pie.tlatoani.Throwable.ThrowableMundo;
 import com.pie.tlatoani.Core.Static.*;
@@ -33,24 +36,24 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.IOException;
 
 public class Mundo extends JavaPlugin {
-	private static Mundo instance;
+    private static Mundo instance;
 
     public static Mundo get() {
-	    if (instance == null) {
-	        throw new IllegalStateException("MundoSK has not been enabled yet!");
+        if (instance == null) {
+            throw new IllegalStateException("MundoSK has not been enabled yet!");
         }
-	    return instance;
+        return instance;
     }
 
     @Override
-	public void onEnable() {
+    public void onEnable() {
         instance = this;
 
         Config.reload();
         Logging.load(getLogger());
         Scheduling.load();
         WorldLoader.load();
-		Skript.registerAddon(this);
+        Skript.registerAddon(this);
 
         Logging.info("Pie is awesome :D");
         if (getDescription().getVersion().toUpperCase().contains("BETA")) {
@@ -78,6 +81,13 @@ public class Mundo extends JavaPlugin {
         Registration.register("WorldBorder", WorldBorderMundo::load);
         Registration.register("WorldCreator", WorldCreatorMundo::load);
         Registration.register("WorldManagement", WorldManagementMundo::load);
+        if (Utilities.serverHasPlugin("ProtocolLib")) {
+            Registration.register("Packet", PacketManager::load, "ProtocolLib");
+            if (Config.IMPLEMENT_PACKET_STUFF.getCurrentValue()) {
+                Registration.register("Skin", SkinMundo::load, "ProtocolLib");
+                Registration.register("Tablist", TablistMundo::load, "ProtocolLib");
+            }
+        }
         if (Utilities.serverHasPlugin("TerrainControl")) {
             Registration.register("TerrainControl", TerrainControlMundo::load, "TerrainControl");
         }
@@ -89,9 +99,9 @@ public class Mundo extends JavaPlugin {
         Registration.register("ZExperimental", ZExperimentalMundo::load);
 
         Registration.register("CustomEvent", CustomEventMundo::load);
-		Logging.info("Awesome syntaxes have been registered!");
-		Scheduling.sync(Documentation::buildDocumentation);
-	}
+        Logging.info("Awesome syntaxes have been registered!");
+        Scheduling.sync(Documentation::buildDocumentation);
+    }
 
     @Override
     public void onDisable() {
@@ -121,5 +131,5 @@ public class Mundo extends JavaPlugin {
     public static String getVersion() {
         return instance.getDescription().getVersion();
     }
-	
+
 }

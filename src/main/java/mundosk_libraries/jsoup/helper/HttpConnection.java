@@ -1,8 +1,9 @@
 package mundosk_libraries.jsoup.helper;
 
 import com.pie.tlatoani.Core.Static.Logging;
-
-import mundosk_libraries.jsoup.*;
+import mundosk_libraries.jsoup.Connection;
+import mundosk_libraries.jsoup.HttpStatusException;
+import mundosk_libraries.jsoup.UnsupportedMimeTypeException;
 import mundosk_libraries.jsoup.nodes.Document;
 import mundosk_libraries.jsoup.parser.Parser;
 import mundosk_libraries.jsoup.parser.TokenQueue;
@@ -289,7 +290,7 @@ public class HttpConnection implements Connection {
     }
 
     @SuppressWarnings({"unchecked"})
-    private static abstract class Base<T extends Connection.Base<T>> implements Connection.Base<T> {
+    private static abstract class Base<T extends Connection.Base> implements Connection.Base<T> {
         URL url;
         Method method;
         Map<String, String> headers;
@@ -675,7 +676,6 @@ public class HttpConnection implements Connection {
                         }
                     });
                 } catch (NoSuchAlgorithmException | KeyManagementException e) {
-                	Logging.debug(HttpConnection.class, e);
                 }
             } else {
             	Logging.info("conn not instance of HttpsURLConnection: " + conn.getClass() + ", " + conn);
