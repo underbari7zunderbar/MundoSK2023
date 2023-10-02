@@ -5,7 +5,7 @@ website: ${url}
 version: ${version}
 main: ${mainClass}
 depend: [Skript]
-soft-depend: [TerrainControl]
+soft-depend: [TerrainControl, ProtocolLib]
 commands:
   mundosk:
     description: This command is for getting basic information about MundoSK as well as reloading the config
