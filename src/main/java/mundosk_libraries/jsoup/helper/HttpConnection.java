@@ -1,6 +1,7 @@
 package mundosk_libraries.jsoup.helper;
 
 import com.pie.tlatoani.Core.Static.Logging;
+import com.pie.tlatoani.Mundo;
 import mundosk_libraries.jsoup.Connection;
 import mundosk_libraries.jsoup.HttpStatusException;
 import mundosk_libraries.jsoup.UnsupportedMimeTypeException;
@@ -676,9 +677,10 @@ public class HttpConnection implements Connection {
                         }
                     });
                 } catch (NoSuchAlgorithmException | KeyManagementException e) {
+                    Logging.debug(HttpConnection.class, e);
                 }
             } else {
-            	Logging.info("conn not instance of HttpsURLConnection: " + conn.getClass() + ", " + conn);
+                Logging.info("conn not instance of HttpsURLConnection: " + conn.getClass() + ", " + conn);
             }
             //MUNDOSK END
             Response res;

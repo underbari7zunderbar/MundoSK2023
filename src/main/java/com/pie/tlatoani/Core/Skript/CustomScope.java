@@ -172,23 +172,35 @@ public abstract class CustomScope extends Condition {
 	public static void getScopes() {
 		if (!getScopesWasRun) {
 			try {
-				Map<Class<? extends Event>, List<Trigger>> triggerMap = (Map<Class<? extends Event>, List<Trigger>>) triggers.get(null);
-				Logging.debug(CustomScope.class, "TRIGGERMAP:: " + triggerMap);
-				for (List<Trigger> triggers : triggerMap.values()) {
-					triggers.forEach(CustomScope::registerImmediateScopes);
+				Object triggersObj = triggers.get(null);
+				if (triggersObj instanceof Map) {
+					Map<Class<? extends Event>, List<Trigger>> triggerMap = (Map<Class<? extends Event>, List<Trigger>>) triggersObj;
+					Logging.debug(CustomScope.class, "TRIGGERMAP:: " + triggerMap);
+					for (List<Trigger> triggerList : triggerMap.values()) {
+						triggerList.forEach(CustomScope::registerImmediateScopes);
+					}
+				} else {
+					Logging.debug(CustomScope.class, "triggers is not of type Map, it's of type " + triggersObj.getClass().getName());
 				}
-				Map<String, ScriptCommand> commandMap = (Map<String, ScriptCommand>) commands.get(null);
-				for (ScriptCommand scriptCommand : commandMap.values()) {
-                    Trigger trigger = (Trigger) commandTrigger.get(scriptCommand);
-                    registerImmediateScopes(trigger);
 
+				Object commandsObj = commands.get(null);
+				if (commandsObj instanceof Map) {
+					Map<String, ScriptCommand> commandMap = (Map<String, ScriptCommand>) commandsObj;
+					for (ScriptCommand scriptCommand : commandMap.values()) {
+						Trigger trigger = (Trigger) commandTrigger.get(scriptCommand);
+						registerImmediateScopes(trigger);
+					}
+				} else {
+					Logging.debug(CustomScope.class, "commands is not of type Map, it's of type " + commandsObj.getClass().getName());
 				}
+
 			} catch (IllegalAccessException e) {
 				Logging.reportException(CustomScope.class, e);
 			}
 			getScopesWasRun = true;
 		}
 	}
+
 
 	public static void querySetScope() {
 		if (getScopesWasRun) {
