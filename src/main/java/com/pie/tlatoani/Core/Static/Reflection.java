@@ -28,6 +28,7 @@ public final class Reflection {
     private static String DED_PREFIX = "net.minecraft.server.dedicated";
     private static String NET_PREFIX = "net.minecraft.network";
     private static String PLAYER_PREFIX = "net.minecraft.server.level";
+    private static String WORLD_PREFIX = "net.minecraft.world.level";
     private static String ITEM_PREFIX = "net.minecraft.world.item";
     private static String VERSION = OBC_PREFIX.replace("org.bukkit.craftbukkit", "").replace(".", "");
 
@@ -395,7 +396,9 @@ public final class Reflection {
     public static Class<?> getDedicatedClass(String name) {
         return getCanonicalClass(DED_PREFIX + "." + name);
     }
-
+    public static Class<?> getWorldClass(String name) {
+        return getCanonicalClass(WORLD_PREFIX + "." + name);
+    }
     public static Class<?> getNetworkClass(String name) {
         return getCanonicalClass(NET_PREFIX + "." + name);
     }
