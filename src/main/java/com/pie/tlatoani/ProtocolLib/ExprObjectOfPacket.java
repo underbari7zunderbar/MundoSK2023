@@ -111,11 +111,11 @@ public class ExprObjectOfPacket extends SimpleExpression<Object> {
             Reflection.MethodInvoker asNMSCopy = Reflection.getTypedMethod(
                     Reflection.getCraftBukkitClass("inventory.CraftItemStack"),
                     "asNMSCopy",
-                    Reflection.getMinecraftClass("ItemStack"),
+                    Reflection.getItemClass("ItemStack"),
                     ItemStack.class
             );
             Reflection.MethodInvoker getNMSItem = Reflection.getTypedMethod(
-                    Reflection.getMinecraftClass("ItemStack"),
+                    Reflection.getItemClass("ItemStack"),
                     "getItem",
                     nmsItemClass
             );
