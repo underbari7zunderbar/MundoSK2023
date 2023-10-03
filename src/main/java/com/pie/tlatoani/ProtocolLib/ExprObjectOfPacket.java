@@ -107,7 +107,7 @@ public class ExprObjectOfPacket extends SimpleExpression<Object> {
         //Thanks to ashcr0w for help with the following converter
 
         try {
-            Class nmsItemClass = Reflection.getMinecraftClass("Item");
+            Class nmsItemClass = Reflection.getItemClass("Item");
             Reflection.MethodInvoker asNMSCopy = Reflection.getTypedMethod(
                     Reflection.getCraftBukkitClass("inventory.CraftItemStack"),
                     "asNMSCopy",
