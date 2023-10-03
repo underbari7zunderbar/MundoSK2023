@@ -38,33 +38,15 @@ public class ProfileManager {
 
     public static void loadReflectionStuff() {
         try {
-            CRAFT_PLAYER_GET_HANDLE = Reflection.getTypedMethod(
-                    Reflection.getCraftBukkitClass("entity.CraftPlayer"), "getHandle",
-                    Reflection.getMinecraftClass("EntityPlayer"));
+            CRAFT_PLAYER_GET_HANDLE = Reflection.getTypedMethod(Reflection.getCraftBukkitClass("entity.CraftPlayer"), "getHandle", Reflection.getMinecraftClass("EntityPlayer"));
             if (Bukkit.getVersion().contains("1.13")) {
-                DEDICATED_PLAYER_LIST_MOVE_TO_WORLD = Reflection.getMethod(
-                        Reflection.getMinecraftClass("DedicatedPlayerList"), "moveToWorld",
-                        Reflection.getMinecraftClass("EntityPlayer"),
-                        Reflection.getMinecraftClass("DimensionManager"),
-                        boolean.class,
-                        Location.class,
-                        boolean.class
+                DEDICATED_PLAYER_LIST_MOVE_TO_WORLD = Reflection.getMethod(Reflection.getDedicatedClass("DedicatedPlayerList"), "moveToWorld", Reflection.getMinecraftClass("EntityPlayer"), Reflection.getMinecraftClass("DimensionManager"), boolean.class, Location.class, boolean.class
                 );
-                CRAFT_WORLD_GET_HANDLE = Reflection.getTypedMethod(
-                        Reflection.getCraftBukkitClass("CraftWorld"), "getHandle",
-                        Reflection.getMinecraftClass("WorldServer"));
-                WORLD_SERVER_DIMENSION = Reflection.getField(
-                        Reflection.getMinecraftClass("WorldServer"), "dimension",
-                        Reflection.getMinecraftClass("DimensionManager")
+                CRAFT_WORLD_GET_HANDLE = Reflection.getTypedMethod(Reflection.getCraftBukkitClass("CraftWorld"), "getHandle", Reflection.getMinecraftClass("WorldServer"));
+                WORLD_SERVER_DIMENSION = Reflection.getField(Reflection.getMinecraftClass("WorldServer"), "dimension", Reflection.getMinecraftClass("DimensionManager")
                 );
             } else {
-                DEDICATED_PLAYER_LIST_MOVE_TO_WORLD = Reflection.getMethod(
-                        Reflection.getMinecraftClass("DedicatedPlayerList"), "moveToWorld",
-                        Reflection.getMinecraftClass("EntityPlayer"),
-                        int.class,
-                        boolean.class,
-                        Location.class,
-                        boolean.class
+                DEDICATED_PLAYER_LIST_MOVE_TO_WORLD = Reflection.getMethod(Reflection.getDedicatedClass("DedicatedPlayerList"), "moveToWorld", Reflection.getMinecraftClass("EntityPlayer"), int.class, boolean.class, Location.class, boolean.class
                 );
             }
         } catch (Exception e) {

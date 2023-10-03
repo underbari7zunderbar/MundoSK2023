@@ -25,6 +25,8 @@ public final class Reflection {
     // Deduce the net.minecraft.server.v* package
     private static String OBC_PREFIX = Bukkit.getServer().getClass().getPackage().getName();
     private static String NMS_PREFIX = OBC_PREFIX.replace("org.bukkit.craftbukkit", "net.minecraft.server");
+    private static String DED_PREFIX = "net.minecraft.server.dedicated";
+    private static String NET_PREFIX = "net.minecraft.network";
     private static String VERSION = OBC_PREFIX.replace("org.bukkit.craftbukkit", "").replace(".", "");
 
     //MUNDOSK START
@@ -386,6 +388,14 @@ public final class Reflection {
      */
     public static Class<?> getMinecraftClass(String name) {
         return getCanonicalClass(NMS_PREFIX + "." + name);
+    }
+
+    public static Class<?> getDedicatedClass(String name) {
+        return getCanonicalClass(DED_PREFIX + "." + name);
+    }
+
+    public static Class<?> getNetworkClass(String name) {
+        return getCanonicalClass(NET_PREFIX + "." + name);
     }
 
     /**

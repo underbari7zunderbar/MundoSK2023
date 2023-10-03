@@ -194,7 +194,7 @@ public class ExprObjectOfPacket extends SimpleExpression<Object> {
         });
 
         Reflection.ConstructorInvoker packetDataSerializerConstructor = Reflection.getConstructor(
-                Reflection.getMinecraftClass("PacketDataSerializer"), ByteBuf.class);
+                Reflection.getNetworkClass("PacketDataSerializer"), ByteBuf.class);
 
         registerPluralConverter("bytebuffer", new PacketInfoConverter<Object[]>(Number[].class) {
             @Override
