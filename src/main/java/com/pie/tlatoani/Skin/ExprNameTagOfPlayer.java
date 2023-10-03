@@ -30,7 +30,11 @@ public class ExprNameTagOfPlayer extends SimpleExpression<String> {
         if (targetExpression == null) {
             return new String[]{profile.getGeneralNametag()};
         } else {
-            return Arrays.stream(targetExpression.getArray(event)).filter(Player::isOnline).map(target -> profile.getSpecificProfile(target).getNametag()).toArray(String[]::new);
+            return Arrays
+                    .stream(targetExpression.getArray(event))
+                    .filter(Player::isOnline)
+                    .map(target -> profile.getSpecificProfile(target).getNametag())
+                    .toArray(String[]::new);
         }
     }
 

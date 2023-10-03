@@ -107,7 +107,7 @@ public abstract class SkullUtil {
     }
 
     /**
-     * Creates a player skull in the form of an {@link ItemStack} of type {@link Material#LEGACY_SKULL_ITEM},
+     * Creates a player skull in the form of an {@link ItemStack} of type {@link Material#SKULL_ITEM},
      * skull type {@link SkullType#PLAYER}, skin {@code skin}, and owner {@link #DEFAULT_SKULL_OWNER}
      * @param skin The skin of the new player skull
      * @return The created player skull
@@ -117,7 +117,7 @@ public abstract class SkullUtil {
     }
 
     /**
-     * Creates a player skull in the form of an {@link ItemStack} of type {@link Material#LEGACY_SKULL_ITEM},
+     * Creates a player skull in the form of an {@link ItemStack} of type {@link Material#SKULL_ITEM},
      * skull type {@link SkullType#PLAYER}, skin {@code skin}, and owner {@code owner}
      * @param skin The skin of the new player skull
      * @param owner The owner of the new player skull
@@ -133,11 +133,11 @@ public abstract class SkullUtil {
      * Returns a Held of {@code itemStack} if {@code itemStack.getType() == Material.SKULL_ITEM},
      * otherwise returns {@link Optional#empty()}.
      * @param itemStack The item to contain in a Held
-     * @return An {@link Optional} containing {@code itemStack} if its type is {@link Material#LEGACY_SKULL_ITEM};
+     * @return An {@link Optional} containing {@code itemStack} if its type is {@link Material#SKULL_ITEM};
      * {@link Optional#empty()} otherwise
      */
     public static Optional<Held> from(ItemStack itemStack) {
-        if (itemStack.getType() == Material.LEGACY_SKULL_ITEM) {
+        if (itemStack.getType() == Material.SKULL_ITEM) {
             return Optional.of(new Held(itemStack));
         }
         return Optional.empty();
@@ -147,26 +147,26 @@ public abstract class SkullUtil {
      * Returns a Placed of {@code block} if {@code block.getType() == Material.SKULL},
      * otherwise returns {@link Optional#empty()}.
      * @param block The block to be contained in a Placed
-     * @return An {@link Optional} containing {@code block} if its type is {@link Material#LEGACY_SKULL};
+     * @return An {@link Optional} containing {@code block} if its type is {@link Material#SKULL};
      * {@link Optional#empty()} otherwise
      */
     public static Optional<Placed> from(Block block) {
-        if (block.getType() == Material.LEGACY_SKULL) {
+        if (block.getType() == Material.SKULL) {
             return Optional.of(new Placed(block));
         }
         return Optional.empty();
     }
 
     public static Held make(ItemStack itemStack) {
-        if (itemStack.getType() != Material.LEGACY_SKULL_ITEM) {
-            itemStack.setType(Material.LEGACY_SKULL_ITEM);
+        if (itemStack.getType() != Material.SKULL_ITEM) {
+            itemStack.setType(Material.SKULL_ITEM);
         }
         return new Held(itemStack);
     }
 
     public static Placed make(Block block) {
-        if (block.getType() != Material.LEGACY_SKULL) {
-            block.setType(Material.LEGACY_SKULL);
+        if (block.getType() != Material.SKULL) {
+            block.setType(Material.SKULL);
         }
         return new Placed(block);
     }
@@ -175,7 +175,7 @@ public abstract class SkullUtil {
         public final ItemStack item;
 
         private Held() {
-            this(new ItemStack(Material.LEGACY_SKULL_ITEM));
+            this(new ItemStack(Material.SKULL_ITEM));
             if (item.getDurability() != DURABILITY) {
                 item.setDurability(DURABILITY);
             }
@@ -183,7 +183,7 @@ public abstract class SkullUtil {
 
         private Held(ItemStack item) {
             this.item = item;
-            if (item.getType() != Material.LEGACY_SKULL_ITEM) {
+            if (item.getType() != Material.SKULL_ITEM) {
                 throw new IllegalArgumentException("Illegal type: " + item.getType() + ", should be SKULL_ITEM");
             }
         }
@@ -218,7 +218,7 @@ public abstract class SkullUtil {
 
         private Placed(Block block) {
             this.block = block;
-            if (block.getType() != Material.LEGACY_SKULL) {
+            if (block.getType() != Material.SKULL) {
                 throw new IllegalArgumentException("Illegal block type: " + block.getType() + ", should be SKULL");
             }
         }
